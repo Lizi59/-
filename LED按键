@@ -1,0 +1,19 @@
+  while (1)
+  {
+    //k1按键控制LED 按下亮起 不按住就熄灭
+	  HAL_GPIO_ReadPin(K1_GPIO_Port, K1_Pin);
+	  if(HAL_GPIO_ReadPin(K1_GPIO_Port, K1_Pin)==GPIO_PIN_RESET){
+		  HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_SET);
+	  }else{
+		  HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_RESET);
+	  }
+	 
+    
+    //K2按键控制LED的翻转 按一次亮起，再按一次关闭...
+    if(HAL_GPIO_ReadPin(K2_GPIO_Port, K2_Pin)==GPIO_PIN_RESET){
+		  HAL_Delay(10); //软件进行消抖
+		  if(HAL_GPIO_ReadPin(K2_GPIO_Port, K2_Pin)==GPIO_PIN_RESET){
+		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);//电平翻转函数
+		  while(HAL_GPIO_ReadPin(K2_GPIO_Port, K2_Pin)==GPIO_PIN_RESET){}
+	  }
+	
