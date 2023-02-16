@@ -1,0 +1,20 @@
+ if(state <=2 || state ==5){
+	  HAL_GPIO_WritePin(Red_GPIO_Port, Red_Pin,GPIO_PIN_SET);
+	  }else{
+	  HAL_GPIO_WritePin(Red_GPIO_Port, Red_Pin,GPIO_PIN_RESET);
+	  }
+	  if(state >=1 && state <=3){
+	  	  HAL_GPIO_WritePin(Green_GPIO_Port, Green_Pin,GPIO_PIN_SET);
+	  	  }else{
+	  	  HAL_GPIO_WritePin(Green_GPIO_Port, Green_Pin,GPIO_PIN_RESET);
+	  	  }
+	  if(state >=2){
+	  	  	  HAL_GPIO_WritePin(Blue_GPIO_Port, Blue_Pin,GPIO_PIN_SET);
+	  	  	  }else{
+	  	  	  HAL_GPIO_WritePin(Blue_GPIO_Port, Blue_Pin,GPIO_PIN_RESET);
+	  	  	  }
+	  HAL_Delay(500);
+
+	  state++;
+	  if(state>5)
+		  state=0;
